@@ -58,6 +58,7 @@ button:hover {
 #clock,
 #battery,
 #cpu,
+#backlight,
 #memory,
 #disk,
 #temperature,
@@ -107,6 +108,11 @@ button:hover {
 #battery {
     color: @green;
     border-bottom: 2px solid @green;
+}
+
+#backlight {
+    color: @peach;
+    border-bottom: 2px solid @peach;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
