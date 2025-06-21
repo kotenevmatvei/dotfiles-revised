@@ -57,6 +57,7 @@ button:hover {
 #pulseaudio,
 #clock,
 #battery,
+#keyboard_layout,
 #cpu,
 #backlight,
 #memory,
@@ -113,6 +114,11 @@ button:hover {
 #backlight {
     color: @peach;
     border-bottom: 2px solid @peach;
+}
+
+#custom-keyboard_layout {
+    color: @sapphire;
+    border-bottom: 2px solid @sapphire;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
