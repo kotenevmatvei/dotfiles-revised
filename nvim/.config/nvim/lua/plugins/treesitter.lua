@@ -20,7 +20,7 @@ return {
           "cpp",
         },
         highlight = { enable = true },
-        indent = { enable = false },
+        indent = { enable = true },
       })
     end
   }
