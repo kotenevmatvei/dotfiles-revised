@@ -1,3 +1,8 @@
+-- Enable absolute line numbers
+vim.opt.number = true
+-- Enable relative line numbers
+vim.opt.relativenumber = true
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
