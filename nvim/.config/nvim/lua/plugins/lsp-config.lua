@@ -12,6 +12,11 @@ return {
     opts = {
       auto_install = true,
     },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "pyright", "clangd", "texlab", "ruff", "jedi_language_server", "cssls" },
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
