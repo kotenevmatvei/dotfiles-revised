@@ -60,6 +60,7 @@ button:hover {
 #keyboard_layout,
 #cpu,
 #backlight,
+#bluetooth,
 #memory,
 #disk,
 #temperature,
@@ -113,6 +114,11 @@ button:hover {
 
 #backlight {
     color: @peach;
+    border-bottom: 2px solid @peach;
+}
+
+#bluetooth {
+    color: @lavender;
     border-bottom: 2px solid @peach;
 }
 

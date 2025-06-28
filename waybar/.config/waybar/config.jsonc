@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["network", "pulseaudio", "backlight", "battery", "custom/keyboard_layout", "clock"],
+  "modules-right": ["network", "pulseaudio", "backlight", "bluetooth", "battery", "custom/keyboard_layout", "clock"],
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -11,6 +11,8 @@
   "return-type": "json",
   "exec": "hypr-kbd-layout", 
   "format": "{text}"
+  },
+  "bluetooth": {
   },
   "backlight": {
 	"device": "intel_backlight",
