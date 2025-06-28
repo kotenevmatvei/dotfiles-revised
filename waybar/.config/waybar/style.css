@@ -57,10 +57,10 @@ button:hover {
 #pulseaudio,
 #clock,
 #battery,
-#keyboard_layout,
+#custom-keyboard_layout,
 #cpu,
 #backlight,
-#bluetooth,
+#custom-bluetooth,
 #memory,
 #disk,
 #temperature,
@@ -117,7 +117,7 @@ button:hover {
     border-bottom: 2px solid @peach;
 }
 
-#bluetooth {
+#custom-bluetooth {
     color: @lavender;
     border-bottom: 2px solid @peach;
 }

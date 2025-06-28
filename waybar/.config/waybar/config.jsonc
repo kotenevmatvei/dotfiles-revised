@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["network", "pulseaudio", "backlight", "bluetooth", "battery", "custom/keyboard_layout", "clock"],
+  "modules-right": ["network", "pulseaudio", "backlight", "custom/bluetooth", "battery", "custom/keyboard_layout", "clock"],
   "clock": {
     "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -12,8 +12,11 @@
   "exec": "hypr-kbd-layout", 
   "format": "{text}"
   },
-  "bluetooth": {
-  },
+  "custom/bluetooth": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/.config/scripts/waybar-bluetooth.sh",
+    },
   "backlight": {
 	"device": "intel_backlight",
 	"format": "{percent}% {icon}",
