@@ -1,3 +1,8 @@
+-- Okay, what I want to be able to do:
+-- 1. With a shortcut create a note (title passed as a parameter) and automatically
+--    assign a unique, time-based ID and title property same as title.
+-- 2. DO NOT CREATE NOTES ANY OTHER WAY E.G. VIA NEOTREE OR CONSOLE
+
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*", -- recommended, use latest release instead of latest commit
@@ -50,13 +55,6 @@ return {
 					return require("obsidian").util.toggle_checkbox()
 				end,
 				opts = { buffer = true },
-			},
-			-- Smart action depending on context, either follow link or toggle checkbox.
-			["<cr>"] = {
-				action = function()
-					return require("obsidian").util.smart_action()
-				end,
-				opts = { buffer = true, expr = true },
 			},
 		},
 
@@ -113,6 +111,7 @@ return {
 				id = note.id,
 				-- Set empty aliases and tags for you to fill in.
 				-- Set the creation and last updated dates.
+        title = note.title,
 				created = os.date("%Y-%m-%d@%H:%M:%S"),
 				last_updated = os.date("%Y-%m-%d@%H:%M:%S"),
 			}
@@ -148,5 +147,9 @@ return {
 
 		-- Set conceallevel FOR MARKDOWN BUFFERS ONLY
 		vim.opt.conceallevel = 1
+
+		local client = require("obsidian").get_client()
+		vim.keymap.set("n", "<leader>n", ":ObsidianNew<CR>")
+		vim.keymap.set("n", "<C-p>", ":ObsidianSearch<CR>")
 	end,
 }
