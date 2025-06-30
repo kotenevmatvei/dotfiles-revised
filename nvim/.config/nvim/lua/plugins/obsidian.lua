@@ -107,11 +107,7 @@ return {
 			-- `note.metadata` contains any fields passed to `:ObsidianNew`
 			-- so we can merge them with our defaults.
 			local out = {
-				-- The default `id` is a timestamp, which is great for uniqueness.
-				id = note.id,
-				-- Set empty aliases and tags for you to fill in.
 				-- Set the creation and last updated dates.
-        title = note.title,
 				created = os.date("%Y-%m-%d@%H:%M:%S"),
 				last_updated = os.date("%Y-%m-%d@%H:%M:%S"),
 			}
@@ -123,6 +119,10 @@ return {
 				end
 			end
 			return out
+		end,
+
+		note_id_func = function(title)
+			return title
 		end,
 
 		-- This table defines callbacks that are triggered on certain events.
