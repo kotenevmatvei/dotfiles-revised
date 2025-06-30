@@ -39,6 +39,10 @@ return {
 			min_chars = 2,
 		},
 
+		templates = {
+			folder = "Templates",
+		},
+
 		-- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
 		-- way then set 'mappings = {}'.
 		mappings = {
@@ -151,5 +155,6 @@ return {
 		local client = require("obsidian").get_client()
 		vim.keymap.set("n", "<leader>n", ":ObsidianNew<CR>")
 		vim.keymap.set("n", "<C-p>", ":ObsidianSearch<CR>")
+		vim.keymap.set("n", "<leader>d", ":ObsidianNewFromTemplate<CR>")
 	end,
 }
