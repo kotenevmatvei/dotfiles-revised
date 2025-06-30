@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
       -- Visual guide for typing, does not force wrapping
       vim.opt_local.textwidth = 80
-      vim.opt_local.colorcolumn = '+1'
+      vim.opt_local.colorcolumn = '0'
 
       -- Intuitive up/down navigation for wrapped lines
       vim.keymap.set('n', 'j', 'gj', { buffer = true, silent = true })
