@@ -53,13 +53,6 @@ return {
 				end,
 				opts = { noremap = false, expr = true, buffer = true },
 			},
-			-- Toggle check-boxes.
-			["<leader>ch"] = {
-				action = function()
-					return require("obsidian").util.toggle_checkbox()
-				end,
-				opts = { buffer = true },
-			},
 		},
 
 		ui = {
@@ -154,7 +147,7 @@ return {
 
 		local client = require("obsidian").get_client()
 		vim.keymap.set("n", "<leader>n", ":ObsidianNew<CR>")
-		vim.keymap.set("n", "<C-p>", ":ObsidianSearch<CR>")
+		vim.keymap.set("n", "<C-p>", ":ObsidianQuickSwitch<CR>")
 		vim.keymap.set("n", "<leader>d", ":ObsidianNewFromTemplate<CR>")
 	end,
 }
