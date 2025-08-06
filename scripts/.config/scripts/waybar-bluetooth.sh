@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# ~/.config/waybar/scripts/waybar-bluetooth.sh
 
 # Function to get the current status and output JSON
 output_status() {
@@ -12,8 +11,6 @@ output_status() {
     fi
 
     # Get the names of connected devices. `bluetoothctl info` for each paired device.
-    # The `grep` filters for the "Name" line of devices that are "Connected: yes".
-    # `head -n 1` picks the first one if multiple are connected.
     connected_device_name=$(bluetoothctl devices Connected | awk 'NR==1 { if ($1 == "Device") { for(i=3; i<=NF; i++) printf "%s ", $i; print "" } ; exit }')
 
     if [ -n "$connected_device_name" ]; then
@@ -30,8 +27,6 @@ output_status() {
 output_status
 
 # Listen for Bluetooth events and update on change
-# This is more efficient than polling with a fixed interval.
 dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',path_namespace='/org/bluez'" | while read -r; do
-    # When a signal is received, re-run the status function
     output_status
 done
