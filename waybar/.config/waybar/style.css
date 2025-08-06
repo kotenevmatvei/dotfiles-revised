@@ -46,8 +46,8 @@ button:hover {
 
 #workspaces button.active {
     background-color: rgba(0, 0, 0, 0.3);
-    color: @mauve;
-    border-top: 2px solid @mauve;
+    color: @saphire;
+    border-top: 2px solid @saphire;
 }
 
 #workspaces button.urgent {
@@ -57,10 +57,10 @@ button:hover {
 #pulseaudio,
 #clock,
 #battery,
-#custom-keyboard_layout,
 #cpu,
 #backlight,
 #custom-bluetooth,
+#language,
 #memory,
 #disk,
 #temperature,
@@ -119,10 +119,10 @@ button:hover {
 
 #custom-bluetooth {
     color: @lavender;
-    border-bottom: 2px solid @peach;
+    border-bottom: 2px solid @lavender;
 }
 
-#custom-keyboard_layout {
+#language {
     color: @sapphire;
     border-bottom: 2px solid @sapphire;
 }
