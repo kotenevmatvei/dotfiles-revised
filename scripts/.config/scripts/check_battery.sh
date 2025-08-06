@@ -15,9 +15,9 @@ STATUS=$(cat /sys/class/power_supply/$BATTERY/status)
 if [ "$STATUS" = "Discharging" ]; then
     if [ "$CAPACITY" -le "$CRITICAL_LEVEL" ]; then
         # Send a critical notification
-        notify-send "Battery Critically Low" "Level: ${CAPACITY}%. Plug in immediately!" -u critical -i battery-caution-charging -t 10000
+        notify-send "Battery Critically Low" "Level: ${CAPACITY}%. Plug in immediately!" -u critical -i battery-caution-charging -t 5000
     elif [ "$CAPACITY" -le "$LOW_LEVEL" ]; then
         # Send a normal notification
-        notify-send "Battery Low" "Level: ${CAPACITY}%. Consider plugging in." -u normal -i battery-caution -t 5000
+        notify-send "Battery Low" "Level: ${CAPACITY}%. Consider plugging in." -u normal -i battery-caution -t 3000
     fi
 fi
