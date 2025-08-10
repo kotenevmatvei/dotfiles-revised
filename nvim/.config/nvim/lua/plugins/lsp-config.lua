@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "clangd", "texlab", "ruff", "jedi_language_server", "cssls"},
+        ensure_installed = { "lua_ls", "pyright", "clangd", "texlab", "ruff", "cssls"}, -- there were ruff and jedi_language_server too
       })
     end,
   },
@@ -33,13 +33,13 @@ return {
         },
         capabilities = capabilities,
       })
-      lspconfig.jedi_language_server.setup({
-        on_attach = function(client)
-          client.server_capabilities.hoverProvider = true
-          client.server_capabilities.renameProvider = false
-        end,
-        capabilities = capabilities,
-      })
+      -- lspconfig.jedi_language_server.setup({
+      --   on_attach = function(client)
+      --     client.server_capabilities.hoverProvider = true
+      --     client.server_capabilities.renameProvider = false
+      --   end,
+      --   capabilities = capabilities,
+      -- })
       lspconfig.clangd.setup({
         -- args = {
         --   "-I/usr/lib/x86_64-linux-gnu/mpich/include",
@@ -48,23 +48,23 @@ return {
         -- },
         capabilities = capabilities,
       })
-      lspconfig.ruff.setup({
-        capabilities = capabilities,
-      })
+      -- lspconfig.ruff.setup({
+      --   capabilities = capabilities,
+      -- })
       -- Disable hover in favor of Pyright
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if client == nil then
-            return
-          end
-          if client.name == "ruff" then
-            client.server_capabilities.hoverProvider = false
-          end
-        end,
-        desc = "LSP: Disable hover capability from Ruff",
-      })
+      -- vim.api.nvim_create_autocmd("LspAttach", {
+      --   group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+      --   callback = function(args)
+      --     local client = vim.lsp.get_client_by_id(args.data.client_id)
+      --     if client == nil then
+      --       return
+      --     end
+      --     if client.name == "ruff" then
+      --       client.server_capabilities.hoverProvider = false
+      --     end
+      --   end,
+      --   desc = "LSP: Disable hover capability from Ruff",
+      -- })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
