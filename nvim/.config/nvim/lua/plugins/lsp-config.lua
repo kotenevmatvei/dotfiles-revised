@@ -7,71 +7,65 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    -- Make sure this plugin is loaded after nvim-lspconfig
+    dependencies = { "neovim/nvim-lspconfig" },
     config = function()
+      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities() -- Or your custom capabilities
+
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "clangd", "texlab", "ruff", "cssls"}, -- there were ruff and jedi_language_server too
+        ensure_installed = { "lua_ls", "pyright", "clangd", "texlab", "ruff", "cssls" },
+        handlers = {
+          -- The default handler for servers with no custom configuration
+          function(server_name)
+            lspconfig[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+
+          -- Custom handler for pyright to apply your specific settings
+          ["pyright"] = function()
+            lspconfig.pyright.setup({
+              capabilities = capabilities,
+              settings = {
+                python = {
+                  analysis = {
+                    ignore = { "*" },
+                    autoSearchPaths = true,
+                  },
+                },
+              },
+            })
+          end,
+        },
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.cssls.setup({})
-      lspconfig.lua_ls.setup({ capabilities = capabilities })
-      lspconfig.pyright.setup({
-        settings = {
-          -- pyright = {
-          --   disableOrganizeImports = true,
-          -- },
-          python = {
-            analysis = {
-              ignore = { "*" },
-              autoSearchPaths = true,
-            },
-          },
-        },
-        capabilities = capabilities,
-      })
-      -- lspconfig.jedi_language_server.setup({
-      --   on_attach = function(client)
-      --     client.server_capabilities.hoverProvider = true
-      --     client.server_capabilities.renameProvider = false
-      --   end,
-      --   capabilities = capabilities,
-      -- })
-      lspconfig.clangd.setup({
-        -- args = {
-        --   "-I/usr/lib/x86_64-linux-gnu/mpich/include",
-        --   "-L/usr/lib/x86_64-linux-gnu/mpich/lib",
-        --   "-lmpi"
-        -- },
-        capabilities = capabilities,
-      })
-      -- lspconfig.ruff.setup({
-      --   capabilities = capabilities,
-      -- })
-      -- Disable hover in favor of Pyright
-      -- vim.api.nvim_create_autocmd("LspAttach", {
-      --   group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-      --   callback = function(args)
-      --     local client = vim.lsp.get_client_by_id(args.data.client_id)
-      --     if client == nil then
-      --       return
-      --     end
-      --     if client.name == "ruff" then
-      --       client.server_capabilities.hoverProvider = false
-      --     end
-      --   end,
-      --   desc = "LSP: Disable hover capability from Ruff",
-      -- })
+      -- IMPORTANT: REMOVE ALL lspconfig.<server>.setup() calls from here
+      -- The setup is now handled by mason-lspconfig.
 
+      -- Your keymaps and autocommands are safe to keep here
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>do", vim.lsp.buf.document_symbol, {})
       vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
       vim.keymap.set("n", "<leader>i", vim.lsp.buf.implementation, {})
+
+      -- Any LspAttach autocommands also belong here
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+        callback = function(event)
+          -- You can add buffer-local keymaps or other attach-time logic here
+          -- For example:
+          -- local opts = { buffer = event.buf }
+          -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        end
+      })
     end,
   },
 }
+
