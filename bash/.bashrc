@@ -34,6 +34,8 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
+export DB_URL="postgresql://postgres:password@localhost/postgres"
+
 # flyctl
 export FLYCTL_INSTALL="/home/matvei/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
