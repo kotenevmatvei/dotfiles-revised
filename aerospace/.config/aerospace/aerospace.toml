@@ -74,6 +74,7 @@ run = 'layout floating'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 
+
 # Assign odd workspaces to the main monitor and even workspaces to the secondary
 [workspace-to-monitor-force-assignment]
 1 = 'main'
@@ -85,8 +86,7 @@ run = 'layout floating'
 7 = 'main'
 8 = 'secondary'
 9 = 'main'
-10 = 'secondary'
-o = 'main'       # Assign the 's' workspace for Obsidian to the main monitor
+O = 'main'       # Assign the 's' workspace for Obsidian to the main monitor
 
 
 [gaps]
@@ -94,13 +94,14 @@ inner.horizontal = 10
 inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
-outer.top = 10
+outer.top = [{monitor.main = 0}, 40]
 outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
+
 [mode.main.binding]
 
 # All possible keys:
