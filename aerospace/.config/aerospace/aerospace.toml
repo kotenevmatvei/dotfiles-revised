@@ -6,7 +6,14 @@
 after-startup-command = [
     # JankyBorders has a built-in detection of already running process,
     # so it won't be run twice on AeroSpace restart
-    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+    'exec-and-forget sketchybar'
+]
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=0'
 ]
 
 # Start AeroSpace at login
@@ -46,6 +53,18 @@ automatically-unhide-macos-hidden-apps = false
 [key-mapping]
     preset = 'qwerty'
 
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'telegram'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'finder'
+run = 'layout floating'
+
+
+
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
@@ -54,6 +73,22 @@ automatically-unhide-macos-hidden-apps = false
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+
+# Assign odd workspaces to the main monitor and even workspaces to the secondary
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'secondary'
+3 = 'main'
+4 = 'secondary'
+5 = 'main'
+6 = 'secondary'
+7 = 'main'
+8 = 'secondary'
+9 = 'main'
+10 = 'secondary'
+s = 'main' # Assign the 's' workspace for Obsidian to the main monitor
+
+
 [gaps]
     inner.horizontal = 10
     inner.vertical =   10
@@ -139,7 +174,7 @@ automatically-unhide-macos-hidden-apps = false
     # alt-p = 'workspace P'
     # alt-q = 'workspace Q'
     # alt-r = 'workspace R'
-    # alt-s = 'workspace S'
+    cmd-s = 'workspace S'
     # alt-t = 'workspace T'
     # alt-u = 'workspace U'
     # alt-v = 'workspace V'
@@ -172,7 +207,7 @@ automatically-unhide-macos-hidden-apps = false
     # alt-shift-p = 'move-node-to-workspace P'
     # alt-shift-q = 'move-node-to-workspace Q'
     # alt-shift-r = 'move-node-to-workspace R'
-    # alt-shift-s = 'move-node-to-workspace S'
+    cmd-shift-s = 'move-node-to-workspace S'
     # alt-shift-t = 'move-node-to-workspace T'
     # alt-shift-u = 'move-node-to-workspace U'
     # alt-shift-v = 'move-node-to-workspace V'
@@ -191,6 +226,7 @@ automatically-unhide-macos-hidden-apps = false
 
     cmd-enter = ['exec-and-forget kitty --single-instance --directory="~"']
     cmd-f = ['exec-and-forget open -n -a Firefox']
+    alt-o = ['exec-and-forget kitty --single-instance --directory ~/Documents/obsidian -e nvim']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
