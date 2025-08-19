@@ -17,17 +17,30 @@
 # options using:
 #     config nu --doc | nu-highlight | less -R
 
-$env.PYENV_ROOT = ($env.HOME | path join ".pyenv")
-if ($env.PYENV_ROOT | path join "bin" | path exists) {
-  $env.PATH = ($env.PATH | prepend ($env.PYENV_ROOT | path join "bin"))
+# Set PYENV_ROOT
+let-env PYENV_ROOT = ($nu.home-path | path join ".pyenv")
+
+# Prepend pyenv's bin to PATH if it exists
+let pyenv_bin = ($env.PYENV_ROOT | path join "bin")
+if ($pyenv_bin | path exists) {
+  let-env PATH = ($env.PATH | split row (char esep) | prepend $pyenv_bin | uniq | str join (char esep))
 }
 
-# Initialize pyenv shims for external commands
-# pyenv prints shell code; in Nu, use its “--path” helpers instead of eval
-# Ensure shims dir is on PATH so `python`, `pip`, etc., resolve through pyenv:
-if ($env.PYENV_ROOT | path join "shims" | path exists) {
-  $env.PATH = ($env.PATH | prepend ($env.PYENV_ROOT | path join "shims"))
+# Initialize shims in PATH
+let pyenv_shims = ($env.PYENV_ROOT | path join "shims")
+if ($pyenv_shims | path exists) {
+  let-env PATH = ($env.PATH | split row (char esep) | prepend $pyenv_shims | uniq | str join (char esep))
 }
+
+# Optional: set PYENV_SHELL so pyenv knows the shell
+let-env PYENV_SHELL = "nu"
+
+# Load pyenv env into Nushell (sets PYENV_SHELL, hooks, etc.)
+try { ^pyenv init - nu | load-env } catch { }
+
+# Load pyenv-virtualenv env (enables `pyenv activate/deactivate` and auto-activation)
+try { ^pyenv virtualenv-init - nu | load-env } catch { }
+
 
 $env.config.edit_mode = 'vi'
 $env.config.buffer_editor = 'vi'

@@ -8,10 +8,25 @@ vim.g.mapleader = " "
 vim.opt.swapfile = false
 
 -- Navigate vim panes better
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
+-- Normal mode mappings for pane navigation
+vim.api.nvim_set_keymap('n', '<M-h>', '<C-w>h', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<M-j>', '<C-w>j', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<M-k>', '<C-w>k', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<M-l>', '<C-w>l', {noremap = true, silent = true})
+
+-- Insert mode mappings
+vim.api.nvim_set_keymap('i', '<M-h>', '<C-\\><C-N><C-w>h', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<M-j>', '<C-\\><C-N><C-w>j', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<M-k>', '<C-\\><C-N><C-w>k', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', '<M-l>', '<C-\\><C-N><C-w>l', {noremap = true, silent = true})
+
+-- Terminal mode mappings
+vim.api.nvim_set_keymap('t', '<M-h>', '<C-\\><C-N><C-w>h', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<M-j>', '<C-\\><C-N><C-w>j', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<M-k>', '<C-\\><C-N><C-w>k', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<M-l>', '<C-\\><C-N><C-w>l', {noremap = true, silent = true})
+
+
 
 -- Resize splits using Ctrl + Arrow Keys
 vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
@@ -25,3 +40,4 @@ vim.keymap.set("n", "<leader>ch", ":ObsidianToggleCheckbox<CR>", { noremap = tru
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.wo.number = true
+
