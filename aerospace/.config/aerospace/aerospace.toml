@@ -48,7 +48,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
 
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -57,7 +57,7 @@ preset = 'qwerty'
 
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'telegram'
+if.app-name-regex-substring = 'Viewer'
 run = 'layout floating'
 
 [[on-window-detected]]
@@ -137,8 +137,8 @@ alt-period = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 cmd-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
+# alt-j = 'focus down'
+# alt-k = 'focus up'
 cmd-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
@@ -226,6 +226,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-s = 'mode service'
 
 cmd-enter = ['exec-and-forget kitty --single-instance --directory="/Users/matveikotenev"']
+alt-s = ['exec-and-forget sketchybar --reload']
 cmd-b = ['exec-and-forget open -n -a Firefox']
 alt-o = [
   'workspace O',
