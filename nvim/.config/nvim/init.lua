@@ -49,3 +49,10 @@ vim.api.nvim_create_autocmd('FileType', {
     end)
   end,
 })
+
+-- Add this to your init.lua
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "/Users/matveikotenev/Documents/obsidian*",
+    command = "!/Users/matveikotenev/.config/scripts/obsidian_push.sh",
+})
+
