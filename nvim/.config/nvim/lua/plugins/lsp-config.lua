@@ -14,7 +14,7 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities() -- Or your custom capabilities
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "clangd", "texlab", "ruff", "cssls", "taplo"},
+        ensure_installed = { "lua_ls", "pyright", "clangd", "texlab", "ruff", "cssls", "taplo", "biome"},
         handlers = {
           -- The default handler for servers with no custom configuration
           function(server_name)
