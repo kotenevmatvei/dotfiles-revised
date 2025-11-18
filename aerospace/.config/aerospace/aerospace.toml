@@ -65,6 +65,11 @@ if.app-name-regex-substring = 'finder'
 run = 'layout floating'
 
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'Preview'
+run = 'layout floating'
+
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
@@ -148,8 +153,8 @@ cmd-shift-k = 'move up'
 cmd-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-ctrl-l = 'resize smart -50'
-ctrl-h = 'resize smart +50'
+# ctrl-l = 'resize smart -50'
+# ctrl-h = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 cmd-1 = 'workspace 1'
@@ -225,9 +230,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-s = 'mode service'
 
-cmd-enter = ['exec-and-forget kitty --single-instance --directory="/Users/matveikotenev"']
-# alt-s = ['exec-and-forget sketchybar --reload']
-cmd-b = ['exec-and-forget open -n -a Firefox']
+# cmd-enter = ['exec-and-forget kitty --single-instance --directory="/Users/matveikotenev"']
 # alt-z = [
 #  'workspace 8',
 #  'exec-and-forget kitty --single-instance --directory ~/Documents/obsidian -e nvim',
